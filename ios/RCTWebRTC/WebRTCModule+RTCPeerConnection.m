@@ -196,7 +196,7 @@ RCT_EXPORT_METHOD(peerConnectionTransceiverSetDirection:(nonnull NSNumber *)obje
    }
    for (RTCRtpTransceiver *transceiver in peerConnection.transceivers) {
        if ([transceiver.sender.senderId isEqualToString:transceiverId]) {
-           [transceiver setDirection:[self parseDirection:direction]];
+           [transceiver setDirection:[self parseDirection:direction] error:nil];
        }
    }
     id response = @{
@@ -239,7 +239,7 @@ RCT_EXPORT_METHOD(peerConnectionTransceiverStop:(nonnull NSNumber *)objectID
    }
    for (RTCRtpTransceiver *transceiver in peerConnection.transceivers) {
        if ([transceiver.sender.senderId isEqualToString:transceiverId]) {
-           [transceiver stop];
+           [transceiver stopInternal];
        }
    }
     id response = @{
