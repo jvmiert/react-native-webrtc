@@ -134,6 +134,13 @@ export default class RTCPeerConnection extends EventTarget(PEER_CONNECTION_EVENT
         src = { trackId: source.id };
       }
 
+      if(init.streams) {
+        init.streamIds = init.streams.map(s => `gst-${s.id}`)
+        delete init.streams
+      }
+
+      console.log(`adding transciever for src: ${source.id} with opts: `, init)
+
       WebRTCModule.peerConnectionAddTransceiver(this._peerConnectionId, {...src, init: { ...init } }, (successful, data) => {
         if (successful) {
           this._mergeState(data.state);
