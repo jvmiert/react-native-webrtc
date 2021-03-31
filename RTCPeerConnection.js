@@ -135,7 +135,7 @@ export default class RTCPeerConnection extends EventTarget(PEER_CONNECTION_EVENT
       }
 
       if(init.streams) {
-        init.streamIds = init.streams.map(s => `gst-${s.id}`)
+        init.streamIds = init.streams.map(s => `${s.id}`)
         delete init.streams
       }
 
