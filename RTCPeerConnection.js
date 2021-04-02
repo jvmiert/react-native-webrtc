@@ -280,6 +280,10 @@ export default class RTCPeerConnection extends EventTarget(PEER_CONNECTION_EVENT
     return this._transceivers.slice();
   }
 
+  getSenders() {
+    return this.getTransceivers().map(t => t.sender)
+  }
+
   close() {
     WebRTCModule.peerConnectionClose(this._peerConnectionId);
   }
